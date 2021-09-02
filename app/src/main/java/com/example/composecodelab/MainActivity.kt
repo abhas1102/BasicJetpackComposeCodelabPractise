@@ -7,6 +7,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.composecodelab.ui.theme.ComposeCodelabTheme
 
@@ -26,7 +27,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+    androidx.compose.material.Surface(color = Color.Yellow) {
+        Text(text = "Hello $name!")
+    }
+
 }
 
 @Preview(showBackground = true)
