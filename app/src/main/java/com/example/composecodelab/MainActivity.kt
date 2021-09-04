@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -20,19 +21,23 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
-                Column(modifier = Modifier.
-                width(300.dp).fillMaxHeight(0.7f).background(Color.Blue),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.SpaceAround) {
-                    Text(text = "Abhas",color = Color.White)
-                    Text(text = "Ravi")
-                    Text(text = "Karan")
+            Column(modifier = Modifier
+                .background(Color.Green)
+                .fillMaxHeight(0.7f)
+                .fillMaxWidth()
+                .border(5.dp, Color.Magenta)
+                .padding(5.dp)
+                .border(5.dp, Color.Blue)
+                .padding(5.dp)
+                .border(10.dp, Color.Red)
+                .padding(80.dp)) {
+                    Text(text = "Person1",color = Color.White)
+                    Spacer(modifier = Modifier.height(50.dp))
+                    Text(text = "Person2")
+                    Text(text = "Person3")
                 }
 
-
-
-                }
+        }
             }
 
 }
