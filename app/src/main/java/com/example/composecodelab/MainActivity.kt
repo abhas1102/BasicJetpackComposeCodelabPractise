@@ -20,7 +20,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,85 +38,64 @@ import com.example.composecodelab.ui.theme.ComposeCodelabTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val fontFamily = FontFamily(
+            Font(R.font.roboto_black, FontWeight.Black),
+            Font(R.font.roboto_bold, FontWeight.Bold),
+            Font(R.font.roboto_italic, FontWeight.ExtraBold),
+            Font(R.font.roboto_light, FontWeight.Light),
+            Font(R.font.roboto_medium, FontWeight.Medium),
+            Font(R.font.roboto_regular, FontWeight.Normal),
+            Font(R.font.roboto_thin, FontWeight.Thin)
+        )
         setContent {
-           /* Column(modifier = Modifier
-                .background(Color.Green)
-                .fillMaxHeight(0.7f)
-                .fillMaxWidth()
-                .border(5.dp, Color.Magenta)
-                .padding(5.dp)
-                .border(5.dp, Color.Blue)
-                .padding(5.dp)
-                .border(10.dp, Color.Red)
-                .padding(80.dp)) {
-                    Text(text = "Person1",color = Color.White)
-                    Spacer(modifier = Modifier.height(50.dp))
-                    Text(text = "Person2")
-                    Text(text = "Person3")
-                } */
-            val painter = painterResource(id = R.drawable.garage1)
-            val description = "Garage is shown"
-            val title = "ABC Garage"
-            Box(modifier = Modifier
-                .fillMaxWidth(0.5f)
-                .padding(16.dp)){
-                ImageCard(painter = painter, contentDescription = description, title = title)
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color(0xFF101010))
+            ) {
+                Text(
+                    text = buildAnnotatedString {
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.Green,
+                                fontSize = 50.sp
+                            )
+                        ){
+                                append("S")
+                            }
+                        append("hreya ")
+
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.Green,
+                                fontSize = 50.sp
+                            )
+                        ){
+                            append("L")
+                        }
+                        append("ilicute")
 
 
+                    },
+                    color = Color.White,
+                    fontSize = 30.sp,
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    textAlign = TextAlign.Center,
+                    textDecoration = TextDecoration.Underline
+                )
             }
 
-            ImageCard(painter = painter, contentDescription = description, title = title)
 
         }
-            }
-
-}
-
-@Composable
-fun ImageCard(
-    painter: Painter,
-    contentDescription:String,
-    title:String,
-    modifier: Modifier = Modifier
-
-){
-    Card(modifier = modifier.fillMaxWidth(), shape = RoundedCornerShape(15.dp),
-    elevation = 5.dp) {
-        Box(modifier = Modifier.height(200.dp)) {
-            Image(painter = painter, contentDescription = contentDescription,
-            contentScale = ContentScale.Crop)
-
-            Box(modifier = Modifier
-                .fillMaxSize()
-                .background(Brush.verticalGradient(
-                    colors= listOf(
-                        Color.Transparent,
-                        Color.Black,
-
-                    ), startY = 300f
-                )))
-
-            Box(modifier = Modifier
-                .fillMaxSize()
-                .padding(12.dp),
-                contentAlignment = Alignment.BottomStart
-            ){
-                Text(title,style = TextStyle(color = Color.White,fontSize = 16.sp))
-            }
-        }
-
     }
-
 }
 
 
-/* @Composable
-fun Greeting(name:String){
-    Text(text = "Hello $name")
-}
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview(){
-    Greeting(name = "Abhas")
-} */
+
+
+
+
 
