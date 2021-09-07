@@ -4,11 +4,10 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -56,7 +55,41 @@ class MainActivity : ComponentActivity() {
             Font(R.font.roboto_thin, FontWeight.Thin)
         ) */
         setContent {
-            Column(Modifier.fillMaxSize()) {
+          /*  val scrollState = rememberScrollState()
+
+            Column(modifier= Modifier.verticalScroll(scrollState)) {
+                for (i in 1..50){
+                    Text(text = "Item $i", fontSize = 24.sp, fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 24.dp))
+                }
+            } */  // Normal list
+
+            LazyColumn {
+                itemsIndexed(listOf("This","is","Jetpack","Compose")){
+                    index,string ->
+                    Text(text = string, fontSize = 24.sp, fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 24.dp))
+                }
+
+
+              /*  items(5000){
+                    for (i in 1..50){
+                        Text(text = "Item $it", fontSize = 24.sp, fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 24.dp))
+                } */
+
+            }
+
+          /*  Column(Modifier.fillMaxSize()) {
                 val color = remember {
                     mutableStateOf(Color.Yellow)
                 }
@@ -69,7 +102,7 @@ class MainActivity : ComponentActivity() {
                 }
                 
                 Box(modifier = Modifier.background(color.value).weight(1f).fillMaxSize())
-            }
+            } */
   
            /* Box(
                 modifier = Modifier
@@ -116,7 +149,7 @@ class MainActivity : ComponentActivity() {
 }
 
 
-@Composable
+/* @Composable
 fun ColorBox(modifier:Modifier = Modifier,updateColor: (Color) -> Unit){
   // val color = remember {mutableStateOf(Color.Yellow)}
 
